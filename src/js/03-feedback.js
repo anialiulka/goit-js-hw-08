@@ -2,6 +2,10 @@ import throttle from 'lodash.throttle';
 
 const form = document.querySelector('.feedback-form');
 const storedItems = JSON.parse(localStorage.getItem('feedback-form-state'));
+const data = {
+  email: ' ',
+  message: ' ',
+};
 
 const throttledTime = throttle(onFormInput, 500);
 
@@ -23,10 +27,8 @@ storageCheck();
 
 function onFormInput(e) {
   const { email, message } = e.currentTarget.elements;
-  const data = {
-    email: email.value,
-    message: message.value,
-  };
+  data.email = email.value;
+  data.message = message.value;
   localStorage.setItem('feedback-form-state', JSON.stringify(data));
 }
 
