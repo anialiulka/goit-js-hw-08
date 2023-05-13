@@ -25,13 +25,18 @@ function storageCheck() {
 storageCheck();
 
 function onFormInput(e) {
-  const { email, message } = e.currentTarget.elements;
+  addToLocalStorage(e.currentTarget.elements);
+}
+
+function addToLocalStorage(elements) {
+  const { email, message } = elements;
   data.email = email.value;
   data.message = message.value;
   localStorage.setItem('feedback-form-state', JSON.stringify(data));
 }
 
 function onFormSubmit(e) {
+  addToLocalStorage(e.currentTarget.elements);
   e.preventDefault();
   console.log(JSON.parse(localStorage.getItem('feedback-form-state')));
   localStorage.removeItem('feedback-form-state');
