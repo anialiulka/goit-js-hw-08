@@ -13,8 +13,15 @@ const throttledTime = throttle(time, 1000);
 
 player.on('timeupdate', throttledTime);
 
-const newStartTime = JSON.parse(
-  localStorage.getItem('videoplayer-current-time')
-);
+delayedStart();
 
-player.setCurrentTime(newStartTime.seconds);
+function delayedStart() {
+  if (!JSON.parse(localStorage.getItem('videoplayer-current-time'))) {
+    return;
+  } else {
+    const newStartTime = JSON.parse(
+      localStorage.getItem('videoplayer-current-time')
+    );
+    player.setCurrentTime(newStartTime.seconds);
+  }
+}
