@@ -1,7 +1,7 @@
 import throttle from 'lodash.throttle';
 
 const form = document.querySelector('.feedback-form');
-const storedItems = JSON.parse(localStorage.getItem('feedback-form-state'));
+let storedItems = JSON.parse(localStorage.getItem('feedback-form-state'));
 const data = {
   email: ' ',
   message: ' ',
@@ -14,7 +14,6 @@ form.addEventListener('submit', onFormSubmit);
 
 function storageCheck() {
   if (!storedItems) {
-    console.log('local storage is empty');
     return;
   } else {
     const { email, message } = storedItems;
@@ -34,6 +33,7 @@ function onFormInput(e) {
 
 function onFormSubmit(e) {
   e.preventDefault();
-  console.log(storedItems);
+  console.log(JSON.parse(localStorage.getItem('feedback-form-state')));
   localStorage.removeItem('feedback-form-state');
+  e.currentTarget.reset();
 }
