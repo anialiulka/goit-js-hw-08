@@ -25,7 +25,7 @@ function storageCheck() {
 storageCheck();
 
 function onFormInput(e) {
-  addToLocalStorage(e.currentTarget.elements);
+  addToLocalStorage(form);
 }
 
 function addToLocalStorage(elements) {
